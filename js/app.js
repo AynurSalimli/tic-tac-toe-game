@@ -49,7 +49,7 @@ import View from "./view.js";
 
 //     return {
 //       status: moves.length === 9 || winner != null ? "complete" : "in-progress",
-//       winner, //in-progress | complete 
+//       winner, //in-progress | complete
 //     };
 //   },
 
@@ -149,7 +149,20 @@ import View from "./view.js";
 
 function init() {
   const view = new View();
-  console.log(view.$.turn);
+  view.bindGameResetEvent((event) => {
+    console.log('Reset event');
+    console.log(event);
+  }); 
+
+  view.bindNewRoundEvent((event) => {
+    console.log("New round event");
+    console.log(event);
+  }); 
+
+  view.bindPlayerMoveEvent((event) => {
+    console.log("Player move event");
+    console.log(event);
+  }); 
 }
 
 window.addEventListener("load", init);
