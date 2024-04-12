@@ -15,9 +15,11 @@ export default class View {
 
     //UI-only
     this.$.menuBtn.addEventListener("click", (event) => {
-      this.$.menuItems.classList.toggle("hidden");
+      this.toggleMenu();
     });
   }
+
+  //Register all the event listeners
 
   bindGameResetEvent(handler) {
     this.$.resetBtn.addEventListener("click", handler);
@@ -31,6 +33,15 @@ export default class View {
     this.$.squares.forEach((square) => {
       square.addEventListener("click", handler);
     });
+  }
+
+  //DOM helper methods
+
+  toggleMenu() {
+    this.$.menuItems.classList.toggle("hidden");
+    this.$.menuBtn.classList.toggle("border");
+
+    const icon = this.$.menuBtn
   }
 }
 
