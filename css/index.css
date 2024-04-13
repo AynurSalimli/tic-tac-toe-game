@@ -1,13 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap");
-
-* {
-    margin: 0;
-    padding: 0;
-    font-family: "Montserrat";
-    box-sizing: border-box;
-    list-style: none;
-    border: none;
-}
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap");
 
 :root {
     --dark-gray: #1a2a32;
@@ -17,14 +8,30 @@
     --light-gray: #d3d3d3;
 }
 
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    list-style: none;
+    font-family: "Montserrat", sans-serif;
+    border: none;
+}
+
 html,
 body {
     height: 100%;
-    display: flex;
     background-color: var(--dark-gray);
+}
+
+body {
+    padding: 90px 20px;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
+
+/* Shared utility classes */
 
 button:hover {
     cursor: pointer;
@@ -44,39 +51,56 @@ button:hover {
 }
 
 .shadow {
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+        rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
 .border {
     border: 1px solid rgba(211, 211, 211, 0.4) !important;
 }
 
-body header {
-    margin-bottom: 50px;
-    color: var(--light-gray);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 30px;
-
-}
-
 .grid {
     display: grid;
-    grid-template-rows: 50px repeat(3, 50px) 60px;
-    grid-template-columns: repeat(3, 50px);
+    grid-template-columns: repeat(3, 80px);
+    grid-template-rows: 50px repeat(3, 80px) 60px;
     gap: 5px;
 }
 
-@media(min-width: 768px) {
+@media (min-width: 768px) {
     .grid {
-        width: 400px;
-        grid-template-columns: repeat(3, 120px);
-        grid-template-rows: 50px repeat(3, 120px) 60px;
+        width: 490px;
+        grid-template-columns: repeat(3, 150px);
+        grid-template-rows: 50px repeat(3, 150px) 60px;
         gap: 20px;
     }
 }
 
+.turn {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    align-self: center;
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+@keyframes turn-text-animation {
+    0% {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    100% {
+        opacity: 100%;
+        transform: translateX(0);
+    }
+}
+
+.turn p {
+    font-size: 14px;
+    animation: 0.6s ease-in-out turn-text-animation;
+}
 
 @keyframes turn-icon-animation {
     0% {
@@ -92,41 +116,13 @@ body header {
     }
 }
 
-@keyframes turn-text-animation {
-    0% {
-        opacity: 0;
-        transform: translateX(-20px);
-    }
-
-    100% {
-        opacity: 100%;
-        transform: translateX(0);
-    }
-}
-
-.turn {
-
-    grid-column-start: 1;
-    grid-column-end: 3;
-    display: flex;
-    align-items: center;
-    align-self: center;
-    gap: 20px;
-}
-
-.turn p {
-    font-size: 14px;
-    animation: 0.6s ease-in-out turn-text-animation;
-
-}
-
 .turn i {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     margin-left: 10px;
     animation: 0.6s ease-in-out turn-icon-animation;
-    color: var(--turquoise);
 }
 
+/* Menu styles  */
 .menu {
     position: relative;
 }
@@ -139,18 +135,13 @@ body header {
     align-items: center;
     border-radius: 10px;
     color: white;
-    background-color: var(--gray);
+    background-color: rgba(211, 211, 211, 0.05);
     border: 1px solid transparent;
-}
-
-.menu-btn svg {
-    width: 15px;
-    fill: #fff;
 }
 
 .menu-btn:focus,
 .menu-btn:hover {
-    background-color: var(--gray);
+    background-color: rgba(211, 211, 211, 0.07);
 }
 
 .items {
@@ -158,18 +149,9 @@ body header {
     z-index: 10;
     top: 60px;
     right: 0;
-    background-color: var(--gray);
+    background-color: #203139;
     border-radius: 2px;
     padding: 10px;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.items button:hover {
-    text-decoration: underline;
-    cursor: pointer;
 }
 
 .items button {
@@ -178,11 +160,14 @@ body header {
     color: white;
 }
 
+.items button:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 .square {
     background-color: var(--gray);
-    width: 100%;
-    height: 100%;
-    border-radius: 8px;
+    border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -195,12 +180,11 @@ body header {
 }
 
 .score {
-    background-color: blue;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    border-radius: 8px;
+    border-radius: 10px;
 }
 
 .score p {
@@ -208,32 +192,56 @@ body header {
     font-weight: 600;
 }
 
-.actions {
-    background-color: peru;
+.score span {
+    font-size: 12px;
+    margin-top: 2px;
 }
+
+.actions {
+    background-color: purple;
+}
+
+/* Footer styles */
+
+footer {
+    color: white;
+    margin-top: 50px;
+}
+
+footer p {
+    margin-top: 10px;
+    text-align: center;
+}
+
+footer a {
+    color: var(--yellow);
+}
+
+/* Modal styles - opens when game finishes  */
 
 .modal {
     display: flex;
+    justify-content: center;
+    align-items: center;
     position: fixed;
     width: 100%;
     height: 100%;
-    justify-content: center;
-    align-items: center;
     background-color: rgba(0, 0, 0, 0.6);
 }
 
 .modal-contents {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    /* transform: translateY(-80px); */
     height: 150px;
     width: 100%;
     max-width: 300px;
     background-color: #2a4544;
     border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 20px;
-    color: #fff;
+    color: white;
     margin: 10px;
 }
 
@@ -243,7 +251,3 @@ body header {
     color: #2a4544;
     border-radius: 3px;
 }
-
-.fa-solid {
-    font-family: "Montserrat";
-} 
